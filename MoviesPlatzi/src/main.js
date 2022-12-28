@@ -28,8 +28,9 @@ getTrendingPreview()
 async function getCategoriesPreview(){
     const res = await fetch(API + '/genre/movie/list' + API_KEY)
     const data = await res.json();
-    const generos = data.results
-
+    const generos = data.genres
+        console.log(data);
+        console.log(generos);
     generos.forEach(genero => {
 
         const generoContainer = document.createElement('div')
