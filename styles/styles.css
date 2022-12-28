@@ -1,0 +1,208 @@
+/* Variables  */
+:root {
+    --navBlue: rgba(20, 66, 114, 1);
+    --white: rgb(255, 255, 255);
+    --black: black;
+    --bodyBlue: rgba(10, 38, 71, 1);
+    --purple-light-1: #FBFAFB;
+    --purple-light-2: #EEEAF2;
+    --purple-medium-1: #AA83C8;
+    --purple-medium-2: #8B48BF;
+    --purple-medium-3: #5C218A;
+    --purple-dark-1: #3E0F64;
+    --purple-dark-2: #2A0646;  
+    --yellow: #EECC75;
+    --green: #CAD297;
+    --aqua: #B7EAC5;
+    --lightBlue: #A2EEE5;
+    --darkBlue: #8EA2EA;
+    --red: #F09D9D;
+  
+}
+.trending-title{
+    
+    padding:  24px;
+    font-family: Inter;
+    color: var(--white);
+  }
+.trendingSeries-title{
+    
+    padding:  24px;
+    font-family: Inter;
+    color: var(--white);
+  }
+
+.genre-title{
+    padding:  24px;
+    font-family: Inter;
+    color: var(--white);
+}
+.genre-title::before {
+    content: '••••';
+    color: transparent;  
+    background-color: var(--idColor);
+    border-radius: 8px;
+    margin-right: 8px;
+    width: 8px;
+    height: 8px;
+  }
+  .genre-container {
+    width: 50%;
+  }
+  .genre-list{
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+  }
+
+  #id28 { --idColor: var(--yellow); }
+  #id12 { --idColor: var(--red); }
+  #id16 { --idColor: var(--green); }
+  #id35 { --idColor: var(--lightBlue); }
+  #id80 { --idColor: var(--darkBlue); }
+  #id99 { --idColor: var(--purple-dark-1); }
+  #id18 { --idColor: var(--purple-medium-1); }
+  #id10751 { --idColor: var(--yellow); }
+  #id14 { --idColor: var(--red); }
+  #id36 { --idColor: var(--green); }
+  #id27 { --idColor: var(--lightBlue); }
+  #id10402 { --idColor: var(--darkBlue); }
+  #id9648 { --idColor: var(--purple-dark-1); }
+  #id10749 { --idColor: var(--purple-medium-1); }
+  #id878 { --idColor: var(--yellow); }
+  #id10770 { --idColor: var(--red); }
+  #id53 { --idColor: var(--green); }
+  #id10752 { --idColor: var(--lightBlue); }
+  #id37 { --idColor: var(--darkBlue); }
+  
+  
+  
+  .trending-movieList {
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 241px;
+    padding-left: 24px;
+    padding-bottom: 16px;
+    margin-left: 20px;
+  }
+  
+  .trending-movieList .movie-container {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  
+  .trending-movieList .movie-container .movie-img {
+    height: 225px;
+    min-height: 225px;
+    max-height: 225px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+  .trendingSeries-movieList {
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 241px;
+    padding-left: 24px;
+    padding-bottom: 16px;
+    margin-left: 20px;
+  }
+  
+  .trendingSeries-movieList .serie-container {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .trendingSeries-movieList .serie-container .serie-img {
+    height: 225px;
+    min-height: 225px;
+    max-height: 225px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+  
+body{
+    margin: 0;
+    background-color: var(--bodyBlue);
+}
+.navbar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: var(--navBlue);
+   
+}
+.navbarlogo{
+    display: flex;    
+    justify-content: space-between;   
+}
+.navbar span{
+    color: var(--white);
+    margin: 15px; 
+    font-family: Inter;
+    font-weight: 700;
+    cursor: pointer;
+}
+.search{
+    display: flex;    
+    justify-content: space-between;  
+    height: 25px; 
+    margin-top: 13px;
+}
+.search input{
+    background-color: var(--bodyBlue);
+    border-radius: 4px;
+    border-color: var(--bodyBlue);
+    width: 230px;
+    border-style: solid;
+    color: var(--white);
+}
+.search button{
+    border-radius: 8px;
+    background-color: var(--bodyBlue);
+    border-color: var(--bodyBlue);
+    border-style: solid;    
+    margin-left: 3px;
+    color: gray;
+    cursor: pointer;
+}
+.navbar img{
+    width: 50px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.navbar-menu ul{
+    list-style: none;
+    padding: 0 20px 0 0;
+    align-items: center;
+    display: flex;            
+    margin: 15px; 
+}
+.navbar-menu ul li {
+    padding: 0 20px;
+   
+}
+.navbar-menu ul li a{
+    color: var(--white);
+    text-decoration: none;   
+    font-family: Inter;
+   
+}
+footer {
+    background-color: var(--navBlue);
+    color: var(--white);
+    text-align: center;
+    height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    bottom: 0;
+  }

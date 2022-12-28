@@ -5,13 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/styles.css">
-    <title>Cool Movies</title>
+    <title>Meistter Cool Movies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbarlogo">
+        <img src="./img/free-movie-icon-850-thumb.png" alt="" srcset="">
+        <span>Meistter Cool Movies</span>
+        </div>
+        <form id="searchForm" class="search">
+            <input type="text" placeholder="Series y Peliculas" />
+            <button>Buscar</button>
+        </form>
 
+            <div class="navbar-menu">
+                <ul>
+                    <li>
+                        <a href="/">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/">Generos</a>
+                    </li>
+                    <li>
+                        <a href="/">Peliculas</a>
+                    </li>
+                    <li>
+                        <a href="/">Series</a>
+                    </li>
+                    <li>
+                        <a href="/">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
 
+    <!-- Tendencias Peliculas-->
+    <section id="trending" class="trending-container">
+        <div class="trending-header">
+          <h2 class="trending-title">Tendencias</h2>
+          <!-- <button class="trending-btn">Ver más</button> -->
+        </div>    
+        <article class="trending-movieList">
+        </article>
+    </section>
 
+    <!-- Series -->
+    <section id="trendingSeries" class="trendingSeries-container">
+        <div class="trendingSeries-header">
+          <h2 class="trendingSeries-title">Series</h2>
+          <!-- <button class="trendingSeries-btn">Ver más</button> -->
+        </div>    
+        <article class="trendingSeries-movieList">
+        </article>
+    </section>
+
+    <!-- Categorias/Generos -->
+    <section id="genre" class="genre-container">
+        <h2 class="genre-title">Generos</h2>    
+        <article class="genre-list">         
+        </article>
+    </section>
+
+    
     <script src="./secret_key.js"></script>
     <script src="./src/main.js"></script>
 </body>
+<footer>Meistter. Github: https://github.com/Meistter </footer>
 </html>
