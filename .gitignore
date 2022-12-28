@@ -105,3 +105,4 @@ dist
 
 # API KEY
 secret_key.js
+./MoviesPlatzi/src/secret.js

@@ -1,0 +1,20 @@
+{
+  "name": "coolmovies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meistter/CoolMovies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Meistter/CoolMovies/issues"
+  },
+  "homepage": "https://github.com/Meistter/CoolMovies#readme"
+}
