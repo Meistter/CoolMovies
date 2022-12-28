@@ -6,7 +6,7 @@ async function getTrending(){
     const data = await res.json();
 
     const pelis = data.results;
-
+   
     pelis.forEach(movie => {
         const mainArticle = document.querySelector('#trending .trending-movieList')
         const movieContainer = document.createElement('div')
@@ -17,13 +17,14 @@ async function getTrending(){
         img.setAttribute('alt', movie.title)
         movieContainer.appendChild(img)
         mainArticle.appendChild(movieContainer)
-
+        
+       
     });
 }
 getTrending()
 
 async function getTrendingSeries(){
-    const res = await fetch(API + '/trending/movie/day' + API_KEY)
+    const res = await fetch(API + '/trending/tv/day' + API_KEY)
     const data = await res.json();
 
     const series = data.results;
