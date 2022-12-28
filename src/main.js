@@ -45,7 +45,7 @@ async function getTrendingSeries(){
 getTrendingSeries()
 
 async function getGenre(){
-    const res = await fetch(API + '/genre/movie/list' + API_KEY)
+    const res = await fetch(API + '/genre/movie/list' + API_KEY + '&language=es')
     const data = await res.json();
 
     const genres = data.genres;
