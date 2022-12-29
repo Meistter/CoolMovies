@@ -1,8 +1,20 @@
-const API = 'https://api.themoviedb.org/3'
+const API_URL = 'https://api.themoviedb.org/3'
 const IMG_BASE = 'https://image.tmdb.org/t/p/w300' //300px ancho
 
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    },
+    params:{
+        'api_key': API_KEY,
+        'language': 'es'  //para que las categorias lleguen en español
+    }
+})
+
+// En esta funcion NO usaremos Axios para guardarlo como ejemplo usando solo FETCH
 async function getTrending(){
-    const res = await fetch(API + '/trending/movie/week' + API_KEY)
+    const res = await fetch(API_URL + '/trending/movie/week' +'?api_key=' + API_KEY)
     const data = await res.json();
 
     const pelis = data.results;
@@ -24,8 +36,8 @@ async function getTrending(){
 getTrending()
 
 async function getTrendingSeries(){
-    const res = await fetch(API + '/trending/tv/day' + API_KEY)
-    const data = await res.json();
+    const {data} = await api('/trending/tv/day')
+    
 
     const series = data.results;
 
@@ -45,11 +57,10 @@ async function getTrendingSeries(){
 getTrendingSeries()
 
 async function getGenre(){
-    const res = await fetch(API + '/genre/movie/list' + API_KEY + '&language=es')
-    const data = await res.json();
+    const {data} = await api('/genre/movie/list' )
+    
 
-    const genres = data.genres;
-    console.log(genres);
+    const genres = data.genres;    
     genres.forEach(genre => {
 
         const mainContainer = document.querySelector('#genre .genre-list')

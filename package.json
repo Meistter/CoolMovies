@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Meistter/CoolMovies/issues"
   },
-  "homepage": "https://github.com/Meistter/CoolMovies#readme"
+  "homepage": "https://github.com/Meistter/CoolMovies#readme",
+  "dependencies": {
+    "axios": "^1.2.1"
+  }
 }

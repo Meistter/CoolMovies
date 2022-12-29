@@ -1,9 +1,19 @@
-const API = 'https://api.themoviedb.org/3'
+const API_URL = 'https://api.themoviedb.org/3'
 const IMG_BASE = 'https://image.tmdb.org/t/p/w300' //300px ancho
 
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    },
+    params:{
+        'api_key': API_KEY
+    }
+})
+
 async function getTrendingPreview(){
-    const res = await fetch(API + '/trending/movie/day' + API_KEY)
-    const data = await res.json();
+    const {data, status} = await api('/trending/movie/day')
+    
     const movies = data.results
 
     movies.forEach(movie => {
@@ -25,8 +35,10 @@ async function getTrendingPreview(){
 
 getTrendingPreview()
 
+
+// En esta funcion usamos FETCH y no AXIOS para que nos quede el ejemplo
 async function getCategoriesPreview(){
-    const res = await fetch(API + '/genre/movie/list' + API_KEY)
+    const res = await fetch(API_URL + '/genre/movie/list' + '?api_key=' + API_KEY)
     const data = await res.json();
     const generos = data.genres
         console.log(data);
