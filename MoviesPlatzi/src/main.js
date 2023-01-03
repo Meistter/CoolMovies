@@ -33,7 +33,7 @@ async function getTrendingPreview(){
     });
 }
 
-getTrendingPreview()
+
 
 
 // En esta funcion usamos FETCH y no AXIOS para que nos quede el ejemplo
@@ -41,8 +41,7 @@ async function getCategoriesPreview(){
     const res = await fetch(API_URL + '/genre/movie/list' + '?api_key=' + API_KEY)
     const data = await res.json();
     const generos = data.genres
-        console.log(data);
-        console.log(generos);
+       
     generos.forEach(genero => {
 
         const generoContainer = document.createElement('div')
@@ -61,4 +60,4 @@ async function getCategoriesPreview(){
         
     });
 }
-getCategoriesPreview()
+

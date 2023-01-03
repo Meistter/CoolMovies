@@ -33,7 +33,7 @@ async function getTrending(){
        
     });
 }
-getTrending()
+
 
 async function getTrendingSeries(){
     const {data} = await api('/trending/tv/day')
@@ -54,7 +54,6 @@ async function getTrendingSeries(){
 
     });
 }
-getTrendingSeries()
 
 async function getGenre(){
     const {data} = await api('/genre/movie/list' )
@@ -77,4 +76,3 @@ async function getGenre(){
 
     });
 }
-getGenre()
