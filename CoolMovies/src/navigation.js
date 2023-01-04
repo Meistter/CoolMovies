@@ -20,12 +20,21 @@ function navigator(){
     // location.hash
 }
 function home(){
+    navSection.classList.remove('inactive')
+    trendingSection.classList.remove('inactive')
+    genreSection.classList.remove('inactive')
+    seriesSection.classList.remove('inactive')
+    movieDetailSection.classList.add('inactive')
+    headerTitle.classList.remove('inactive')
+    headerCategoryTitle.classList.add('inactive')
     getTrending()
     getGenre()    
     getTrendingSeries()
+
+    // Para hacer: copiar y pegar todos estos classList en cada function y determinar que queremos y que no queremos que se vea
 }
 function trendsPage(){
-    console.log('Estamos en Trends');
+   
 }
 function searchPage(){
     console.log('Estamos en la busqueda');

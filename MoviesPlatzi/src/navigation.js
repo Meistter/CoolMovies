@@ -20,8 +20,11 @@ function navigator(){
     // location.hash
 }
 function home(){
+
+    headerSection.classList.remove('header-container--long')
     getCategoriesPreview()
     getTrendingPreview()
+
 }
 function trendsPage(){
     console.log('Estamos en Trends');
