@@ -5,12 +5,14 @@ const seriesSection = document.querySelector('#trendingSeries')
 const genreSection = document.querySelector('#genre');
 const movieDetailSection = document.querySelector('#movieDetail')
 const headerSection = document.querySelector('#header');
+const genericSection = document.querySelector('#genericList');
 // Listas y contenedores
 
 const searchForm = document.querySelector('#searchForm');
 const trendinMoviesListContainer = document.querySelector('.trending-movieList')
 const seriesListContainer = document.querySelector('.trendingSeries-movieList')
 const categoriesListContainer = document.querySelector('.genre-list')
+const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
 
 // Elementos
 
