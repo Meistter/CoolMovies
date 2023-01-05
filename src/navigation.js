@@ -1,3 +1,9 @@
+function init(){
+    boton.addEventListener('click', ()=>{
+        location.hash = `#search=${searchFormInput.value}`
+    })
+}
+
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 
@@ -34,6 +40,7 @@ function home(){
     getTrendingPreview()
     getGenrePreview()    
     getTrendingSeriesPreview()
+    init()
 
    }
 function trendsPage(){
@@ -47,7 +54,7 @@ function trendsPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
-    
+    init()
 }
 function searchPage(){
     navSection.classList.remove('inactive')
@@ -56,10 +63,13 @@ function searchPage(){
     seriesSection.classList.add('inactive')
     movieDetailSection.classList.add('inactive')
     headerTitle.classList.add('inactive')
-    headerCategoryTitle.classList.remove('inactive')
+    headerCategoryTitle.classList.add('inactive')
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
+    init()
+    const [x, query] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
+    getMoviesBySearch(query)
 }
 function movieDetailsPage(){
      navSection.classList.remove('inactive')
@@ -72,6 +82,7 @@ function movieDetailsPage(){
      genericSection.classList.add('inactive')
      headerSection.classList.add('header-container--long')
      searchForm.classList.remove('inactive')
+     init()
 }
 function categoriesPage(){
     navSection.classList.remove('inactive')
@@ -85,7 +96,7 @@ function categoriesPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     // window.scroll(0,0);
-
+    init()
     // const id = 
     //AQUI DIVIDIMOS EL HASH PARA OBTENER ESPECIFICAMENTE LA PARTE DEL HASH QUE TIENE EL ID
     const [x, idName] = location.hash.split('=') //en idName obtenemos la parte derecha del hash, (despues del =) lo que contiene el ID y el nombre en este caso Ej: #category=12-Aventura
@@ -95,3 +106,4 @@ function categoriesPage(){
     getMoviesByGenre(id);
     getGenrePreview()   
 }
+

@@ -44,6 +44,19 @@ async function getMoviesByGenre(id){
    createMovies(pelisbyGenre, genericSection)
     
 }
+
+async function getMoviesBySearch(query){
+    const {data} = await api('/search/movie', {
+        params: {
+            query : query} //la api requiere enviarle un parametro llamado query con lo q el usuario desea buscar
+        })
+
+    const pelisbySearch = data.results;
+    genericSection.innerHTML = '';
+   
+   createMovies(pelisbySearch, genericSection)
+    
+}
 async function getTrendingSeriesPreview(){
     const {data} = await api('/trending/tv/day')
     seriesListContainer.innerHTML = ''
