@@ -2,8 +2,10 @@ function init(){
     boton.addEventListener('click', ()=>{
         location.hash = `#search=${searchFormInput.value}`
     })
+    // btnMovieTrend.addEventListener('click', location.hash = '#trends')
+    // btnSeriesTrend.addEventListener('click', location.hash = '#trends')
 }
-
+//minuto 4:41 acomodar botones
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 
@@ -54,6 +56,7 @@ function trendsPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
+    getTrendingMovies()
     init()
 }
 function searchPage(){

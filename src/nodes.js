@@ -21,7 +21,8 @@ const boton = document.querySelector('#searchbtn');
 const headerTitle = document.querySelector('.header-title');
 const headerCategoryTitle = document.querySelector('.header-title--categoryView');
 const searchFormInput = document.querySelector('#searchForm input');
-
+const btnMovieTrend = document.querySelector('.trending-btn')
+const btnSeriesTrend = document.querySelector('.trendingSeries-btn')
 
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');

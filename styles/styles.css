@@ -121,6 +121,18 @@ html, body, nav{
     height: 350px !important;
     margin-bottom: 30px;
   }
+  .trending-header, .trendingSeries-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .trending-btn, .trendingSeries-btn {
+    border-radius: 8px;
+    height: 32px;
+    width: 72px;
+    margin-right: 100px;
+    cursor: pointer;
+  }
   .trending-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;

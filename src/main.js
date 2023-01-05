@@ -14,7 +14,7 @@ const api = axios.create({
 
 // En esta funcion NO usaremos Axios para guardarlo como ejemplo usando solo FETCH
 async function getTrendingPreview(){
-    const res = await fetch(API_URL + '/trending/movie/week'  +'?api_key=' + API_KEY + '&language=es')
+    const res = await fetch(API_URL + '/trending/movie/day'  +'?api_key=' + API_KEY + '&language=es')
     const data = await res.json();
     trendinMoviesListContainer.innerHTML = ''
     const pelis = data.results;
@@ -75,6 +75,15 @@ async function getTrendingSeriesPreview(){
         mainArticle.appendChild(serieContainer)
 
     });
+}
+async function getTrendingMovies(){
+    const {data} = await api('/trending/movie/day')    
+    
+    const pelis = data.results;
+   
+
+    createMovies(pelis, genericSection)
+    
 }
 
 function createMovies(movies, container){
