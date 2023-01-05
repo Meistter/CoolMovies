@@ -14,27 +14,36 @@ const api = axios.create({
 
 // En esta funcion NO usaremos Axios para guardarlo como ejemplo usando solo FETCH
 async function getTrendingPreview(){
-    const res = await fetch(API_URL + '/trending/movie/week' +'?api_key=' + API_KEY)
+    const res = await fetch(API_URL + '/trending/movie/week'  +'?api_key=' + API_KEY + '&language=es')
     const data = await res.json();
     trendinMoviesListContainer.innerHTML = ''
     const pelis = data.results;
-   
-    pelis.forEach(movie => {
-        const mainArticle = document.querySelector('#trending .trending-movieList')
-        const movieContainer = document.createElement('div')
-        movieContainer.classList.add('movie-container')
-        const img = document.createElement('img')
-        img.classList.add('movie-img')
-        img.setAttribute('src', IMG_BASE + movie.poster_path)
-        img.setAttribute('alt', movie.title)
-        movieContainer.appendChild(img)
-        mainArticle.appendChild(movieContainer)
-        
-       
-    });
+    const mainArticle = document.querySelector('#trending .trending-movieList')
+
+    createMovies(pelis, mainArticle)
+    
+}
+async function getGenrePreview(){
+    const {data} = await api('/genre/movie/list' )
+    const genres = data.genres;    
+    const mainContainer = document.querySelector('#genre .genre-list')
+    categoriesListContainer.innerHTML = ''    
+
+    createCategories(genres, mainContainer)
+    
 }
 
-
+async function getMoviesByGenre(id){
+    const {data} = await api('/discover/movie', {
+        params: {
+            with_genres : id}
+        })
+    const pelisbyGenre = data.results;
+    genericSection.innerHTML = '';
+   
+   createMovies(pelisbyGenre, genericSection)
+    
+}
 async function getTrendingSeriesPreview(){
     const {data} = await api('/trending/tv/day')
     seriesListContainer.innerHTML = ''
@@ -55,16 +64,25 @@ async function getTrendingSeriesPreview(){
     });
 }
 
-async function getGenrePreview(){
-    const {data} = await api('/genre/movie/list' )
-    const genres = data.genres;    
+function createMovies(movies, container){
 
-    categoriesListContainer.innerHTML = ''    
-
-
-    genres.forEach(genre => {
+    movies.forEach(movie => {
+        const mainArticle = document.querySelector('#trending .trending-movieList')
+        const movieContainer = document.createElement('div')
+        movieContainer.classList.add('movie-container')
+        const img = document.createElement('img')
+        img.classList.add('movie-img')
+        img.setAttribute('src', IMG_BASE + movie.poster_path)
+        img.setAttribute('alt', movie.title)
+        movieContainer.appendChild(img)
+        container.appendChild(movieContainer)
+    })
+       
+}
+function createCategories(gen, container){
+    gen.forEach(genre => {
         
-        const mainContainer = document.querySelector('#genre .genre-list')
+        
         const genreContainer = document.createElement('div')
         genreContainer.classList.add('genre-container')
         const h3 = document.createElement('h3')
@@ -75,33 +93,7 @@ async function getGenrePreview(){
         h3.appendChild(nombre)
 
         genreContainer.appendChild(h3)
-        mainContainer.appendChild(genreContainer)
+        container.appendChild(genreContainer)
 
-    });
-}
-
-async function getMoviesByGenre(id){
-    const {data} = await    ('/discover/movie', {
-        params: {
-            with_genres : id}
-        })
-    const pelisbyGenre = data.results;
-    genericSection.innerHTML = ''
-    
-   
-    pelisbyGenre.forEach(movie => {
-
-        // Minuto 16:25 falta iterar para mostrar el listado de peliculas
-        const mainArticle = document.querySelector('#trending .trending-movieList')
-        const movieContainer = document.createElement('div')
-        movieContainer.classList.add('movie-container')
-        const img = document.createElement('img')
-        img.classList.add('movie-img')
-        img.setAttribute('src', IMG_BASE + movie.poster_path)
-        img.setAttribute('alt', movie.title)
-        movieContainer.appendChild(img)
-        mainArticle.appendChild(movieContainer)
-        
-       
     });
 }

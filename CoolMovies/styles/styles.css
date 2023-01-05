@@ -19,6 +19,9 @@
     --red: #F09D9D;
   
 }
+html, body, nav{
+  min-width: 1440px
+}
 .trending-title, .header-title{
     
     padding:  24px;
@@ -167,19 +170,21 @@ body{
     display: flex;    
     justify-content: space-between;   
 }
-.navbar span{
+.navbar span, .nombre{
     color: var(--white);
     margin: 15px; 
     font-family: Inter;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;  
 }
 .search{
     display: flex;    
     justify-content: space-between;  
     height: 30px; 
     margin-top: 10px;
-    margin-right: 150px;
+    margin-left: 15px;
+    margin-right: 0px;
 }
 .search input{
     background-color: var(--bodyBlue);

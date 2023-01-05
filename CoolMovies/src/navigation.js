@@ -17,9 +17,11 @@ function navigator(){
         home()
     }
     
-    // location.hash
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 }
 function home(){
+    location.hash = '#home'
     navSection.classList.remove('inactive')
     trendingSection.classList.remove('inactive')
     genreSection.classList.remove('inactive')
@@ -33,8 +35,7 @@ function home(){
     getGenrePreview()    
     getTrendingSeriesPreview()
 
-    // Para hacer: copiar y pegar todos estos classList en cada function y determinar que queremos y que no queremos que se vea
-}
+   }
 function trendsPage(){
     navSection.classList.remove('inactive')
     trendingSection.classList.add('inactive')
@@ -76,18 +77,21 @@ function categoriesPage(){
     navSection.classList.remove('inactive')
     searchForm.classList.remove('inactive')
     trendingSection.classList.add('inactive')
-    genreSection.classList.add('inactive')
+    genreSection.classList.remove('inactive')
     seriesSection.classList.add('inactive')
     movieDetailSection.classList.add('inactive')
     headerTitle.classList.add('inactive')
     headerCategoryTitle.classList.remove('inactive')
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
-    window.scroll(0,0);
+    // window.scroll(0,0);
 
     // const id = 
     //AQUI DIVIDIMOS EL HASH PARA OBTENER ESPECIFICAMENTE LA PARTE DEL HASH QUE TIENE EL ID
     const [x, idName] = location.hash.split('=') //en idName obtenemos la parte derecha del hash, (despues del =) lo que contiene el ID y el nombre en este caso Ej: #category=12-Aventura
     const [id, genreName] = idName.split('-') // ahora separamos idName para obtener el id y nombre por separado, lo dividimos en el guion -
+    headerCategoryTitle.innerHTML = genreName
+    console.log(genreName);
     getMoviesByGenre(id);
+    getGenrePreview()   
 }
