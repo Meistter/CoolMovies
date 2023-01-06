@@ -23,19 +23,20 @@ html, body, nav{
   min-width: 1340px
 }
 .trending-title, .header-title{
-    
+    margin-left: 30px;
     padding:  24px;
     font-family: Inter;
     color: var(--white);
   }
 .trendingSeries-title{
-    
+    margin-left: 30px;
     padding:  24px;
     font-family: Inter;
     color: var(--white);
   }
 
 .genre-title, .category-title {
+  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,6 +58,7 @@ html, body, nav{
   justify-content: left;
 }
 .genre-titleText{
+  margin-left: 30px;
   padding:  24px;
   font-family: Inter;
   color: var(--white);
@@ -93,18 +95,19 @@ html, body, nav{
   .trending-movieList {
     overflow-x: hidden;
     overflow-y: hidden;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    width: 97%;
     height: 241px;
     padding-left: 24px;
     padding-bottom: 16px;
-    margin-left: 20px;
+    margin-left: 40px;
   }
   .genericList-container {
     /* display: flex; */
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 32px 0px 20px 15px;
+    padding: 32px 0px 20px 48px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -115,7 +118,7 @@ html, body, nav{
     
   }
   
-  .movie-img {
+  .movie-img, .serie-img {
     width: 250px;
     border-radius: 14px;
     height: 350px !important;
@@ -140,7 +143,7 @@ html, body, nav{
   
 
   .trending-movieList .movie-container .movie-img {
-    height: 225px;
+    /* height: 225px; */
     min-height: 225px;
     max-height: 225px;
     width: 150px;
@@ -151,11 +154,12 @@ html, body, nav{
   .trendingSeries-movieList {
     overflow-x: hidden;
     overflow-y: hidden;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     height: 241px;
+    width: 97%;
     padding-left: 24px;
     padding-bottom: 16px;
-    margin-left: 20px;
+    margin-left: 40px;
   }
   
   .trendingSeries-movieList .serie-container {
@@ -164,7 +168,7 @@ html, body, nav{
   }
   
   .trendingSeries-movieList .serie-container .serie-img {
-    height: 225px;
+    /* height: 225px; */
     min-height: 225px;
     max-height: 225px;
     width: 150px;

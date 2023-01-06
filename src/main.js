@@ -78,14 +78,22 @@ async function getTrendingSeriesPreview(){
 }
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
-    
+    headerTitle.innerHTML = 'Top 20 Peliculas mejores peliculas de la Semana'
     const pelis = data.results;
-   
+    genericSection.innerHTML = ''
 
     createMovies(pelis, genericSection)
     
 }
+async function getTrendingSeries(){
+    const {data} = await api('/trending/tv/day')    
+    headerTitle.innerHTML = 'Top 20 mejores series del Año'
+    const serie = data.results;
+    genericSection.innerHTML = ''
 
+    createMovies(serie, genericSection)
+    
+}
 function createMovies(movies, container){
 
     movies.forEach(movie => {

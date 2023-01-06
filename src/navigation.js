@@ -2,9 +2,10 @@ function init(){
     boton.addEventListener('click', ()=>{
         location.hash = `#search=${searchFormInput.value}`
     })
-    // btnMovieTrend.addEventListener('click', location.hash = '#trends')
-    // btnSeriesTrend.addEventListener('click', location.hash = '#trends')
+    btnMovieTrend.addEventListener('click',()=>{ location.hash = '#trends'})
+    btnSeriesTrend.addEventListener('click',()=>{ location.hash = '#trendiseries'})
 }
+
 //minuto 4:41 acomodar botones
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
@@ -21,6 +22,8 @@ function navigator(){
        movieDetailsPage()
     }else if (location.hash.startsWith('#category=')){
        categoriesPage()
+    }else if (location.hash.startsWith('#trendiseries')){
+        trendSeriesPage()
     }else{
         home()
     }
@@ -108,5 +111,19 @@ function categoriesPage(){
     console.log(genreName);
     getMoviesByGenre(id);
     getGenrePreview()   
+}
+function trendSeriesPage(){
+    navSection.classList.remove('inactive')
+    trendingSection.classList.add('inactive')
+    genreSection.classList.add('inactive')
+    seriesSection.classList.add('inactive')
+    movieDetailSection.classList.add('inactive')
+    headerTitle.classList.remove('inactive')
+    headerCategoryTitle.classList.add('inactive')
+    genericSection.classList.remove('inactive')
+    headerSection.classList.remove('header-container--long')
+    searchForm.classList.remove('inactive')
+    getTrendingSeries()
+    init()
 }
 
