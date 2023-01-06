@@ -78,7 +78,7 @@ async function getTrendingSeriesPreview(){
 }
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
-    headerTitle.innerHTML = 'Top 20 Peliculas mejores peliculas de la Semana'
+    headerTitle.innerHTML = 'Top 20 mejores peliculas de la Semana'
     const pelis = data.results;
     genericSection.innerHTML = ''
 

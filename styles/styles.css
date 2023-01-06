@@ -17,7 +17,7 @@
     --lightBlue: #A2EEE5;
     --darkBlue: #8EA2EA;
     --red: #F09D9D;
-  
+    --border: rgb(63, 111, 201);
 }
 html, body, nav{
   min-width: 1340px
@@ -44,7 +44,8 @@ html, body, nav{
     color: var(--white);
     background-color: var(--navBlue);
     border-radius: 15px;
-    border-color: var(--navBlue);
+    border-width: 1px;
+    border-color: var(--border);
     width: 150px;
     height: 30px;
     border-style: solid;
@@ -82,6 +83,7 @@ html, body, nav{
   .genre-container {
     /* width: 170px */
     width: 100%;
+    
   }
   .genre-list{   
   padding:  0 0  0 24px ;
@@ -89,6 +91,7 @@ html, body, nav{
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 2px;
   font-size: 14px;
+  margin-bottom: 20px;
   }
 
   
@@ -191,6 +194,15 @@ body{
     display: flex;    
     justify-content: space-between;   
 }
+.navbarlogo a{
+  font-size: 22px;  
+  font-family: Domine;
+}
+.navbarlogo img{
+    width: 100px;
+    margin-left: 30px;
+    cursor: pointer;
+}
 .navbar span, .nombre{
     color: var(--white);
     margin: 15px; 
@@ -203,7 +215,7 @@ body{
     display: flex;    
     justify-content: space-between;  
     height: 30px; 
-    margin-top: 10px;
+    margin-top: 13px;
     margin-left: 15px;
     margin-right: 0px;
 }
@@ -224,17 +236,13 @@ body{
     color: gray;
     cursor: pointer;
 }
-.navbar img{
-    width: 50px;
-    margin-left: 30px;
-    cursor: pointer;
-}
+
 .navbar-menu ul{
     list-style: none;
-    padding: 0 20px 0 0;
+    padding: 3px 20px 0 0;
     align-items: center;
     display: flex;            
-    margin: 15px; 
+    /* margin: 15px;  */
 }
 .navbar-menu ul li {
     padding: 0 20px;

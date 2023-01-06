@@ -6,13 +6,13 @@ function init(){
     btnSeriesTrend.addEventListener('click',()=>{ location.hash = '#trendiseries'})
 }
 
-//minuto 4:41 acomodar botones
+
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 
 function navigator(){
     
-    // console.log({location});
+
 
     if (location.hash.startsWith('#trends')){
         trendsPage();
