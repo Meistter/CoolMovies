@@ -20,6 +20,8 @@ function navigator(){
        searchPage()
     }else if (location.hash.startsWith('#movie=')){
        movieDetailsPage()
+    }else if (location.hash.startsWith('#serie=')){
+        serieDetailsPage()
     }else if (location.hash.startsWith('#category=')){
        categoriesPage()
     }else if (location.hash.startsWith('#trendiseries')){
@@ -89,6 +91,26 @@ function movieDetailsPage(){
      headerSection.classList.add('header-container--long')
      searchForm.classList.remove('inactive')
      init()
+     const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
+     getMovieDetails(id)
+     
+}
+function serieDetailsPage(){
+     navSection.classList.remove('inactive')
+     trendingSection.classList.add('inactive')
+     genreSection.classList.add('inactive')
+     seriesSection.classList.add('inactive')
+     movieDetailSection.classList.remove('inactive')
+     headerTitle.classList.add('inactive')
+     headerCategoryTitle.classList.add('inactive')
+     genericSection.classList.add('inactive')
+     headerSection.classList.add('header-container--long')
+     searchForm.classList.remove('inactive')
+     init()
+     const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
+     console.log(location.hash);
+     getSerieDetails(id)
+     console.log(id);
 }
 function categoriesPage(){
     navSection.classList.remove('inactive')

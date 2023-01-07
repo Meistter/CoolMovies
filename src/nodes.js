@@ -13,6 +13,7 @@ const searchForm = document.querySelector('#searchForm');
 const trendinMoviesListContainer = document.querySelector('.trending-movieList')
 const seriesListContainer = document.querySelector('.trendingSeries-movieList')
 const categoriesListContainer = document.querySelector('.genre-list')
+const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
 const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
 
 // Elementos
@@ -27,3 +28,4 @@ const btnSeriesTrend = document.querySelector('.trendingSeries-btn')
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');
 const movieDetailScore = document.querySelector('.movieDetail-score');
+const headerContainerImg = document.querySelector('.header-container--long')

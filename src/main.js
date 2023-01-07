@@ -64,8 +64,13 @@ async function getTrendingSeriesPreview(){
     const series = data.results;
 
     series.forEach(serie => {
+
         const mainArticle = document.querySelector('#trendingSeries .trendingSeries-movieList')
+        
         const serieContainer = document.createElement('div')
+        serieContainer.addEventListener('click', ()=>{
+            location.hash = '#serie=' + serie.id
+        })
         serieContainer.classList.add('serie-container')
         const img = document.createElement('img')
         img.classList.add('serie-img')
@@ -79,6 +84,7 @@ async function getTrendingSeriesPreview(){
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
     headerTitle.innerHTML = 'Top 20 mejores peliculas de la Semana'
+    headerSection.style.background = ''
     const pelis = data.results;
     genericSection.innerHTML = ''
 
@@ -88,17 +94,80 @@ async function getTrendingMovies(){
 async function getTrendingSeries(){
     const {data} = await api('/trending/tv/day')    
     headerTitle.innerHTML = 'Top 20 mejores series del Año'
-    const serie = data.results;
+    headerSection.style.background = ''
+    const series = data.results;
     genericSection.innerHTML = ''
 
-    createMovies(serie, genericSection)
+    series.forEach(serie => {
+        
+        const movieContainer = document.createElement('div')
+        movieContainer.addEventListener('click', ()=>{
+            location.hash = `#serie=${serie.id}`
+        })
+        movieContainer.classList.add('movie-container')
+        const img = document.createElement('img')
+        img.classList.add('movie-img')
+        img.setAttribute('src', IMG_BASE + serie.poster_path)
+        img.setAttribute('alt', serie.title)
+        movieContainer.appendChild(img)
+        genericSection.appendChild(movieContainer)
+    })
+   
+}
+async function getMovieDetails(id){
+    const { data: movie} = await api(`/movie/${id}`)     //aqui renombramos la variable data por movie
+    headerSection.style.background = ''
+    relatedMoviesContainer.innerHTML = ''
+    const movieImgUrl = IMG_BASE + movie.poster_path;
     
+    headerSection.style.background = `url(${movieImgUrl})` //aqui colocamos la url del poster dentro del css ya que el profe puso la imagen en el html a traves de css
+
+    movieDetailTitle.textContent = movie.title
+    movieDetailDescription.textContent = movie.overview
+    movieDetailScore.textContent = movie.vote_average
+   
+    movieDetailCategoriesList.innerHTML = ''
+    createCategories(movie.genres, movieDetailCategoriesList)
+    getRelatedMovies(id)
+}
+async function getSerieDetails(id){
+    const { data: serie} = await api(`/tv/${id}`)     //aqui renombramos la variable data por movie
+    movieDetailCategoriesList.innerHTML = ''
+    headerSection.style.background = ''
+    relatedMoviesContainer.innerHTML = ''
+    
+    const serieImgUrl = IMG_BASE + serie.poster_path;
+    
+    headerSection.style.background = `url(${serieImgUrl})` //aqui colocamos la url del poster dentro del css ya que el profe puso la imagen en el html a traves de css
+    
+    movieDetailTitle.textContent = serie.title
+    movieDetailDescription.textContent = serie.overview
+    movieDetailScore.textContent = serie.vote_average
+    
+    
+    createCategories(serie.genres, movieDetailCategoriesList)
+    getRelatedSeries(id)
+}
+async function getRelatedMovies(id){
+    const { data} = await api(`/movie/${id}/recommendations`) 
+    const related = data.results
+
+    createMovies(related, relatedMoviesContainer)
+}
+async function getRelatedSeries(id){
+    const { data} = await api(`/tv/${id}/recommendations`) 
+    const related = data.results
+
+    createMovies(related, relatedMoviesContainer)
 }
 function createMovies(movies, container){
 
     movies.forEach(movie => {
-        const mainArticle = document.querySelector('#trending .trending-movieList')
+        
         const movieContainer = document.createElement('div')
+        movieContainer.addEventListener('click', ()=>{
+            location.hash = `#movie=${movie.id}`
+        })
         movieContainer.classList.add('movie-container')
         const img = document.createElement('img')
         img.classList.add('movie-img')
