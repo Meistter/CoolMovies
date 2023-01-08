@@ -40,6 +40,7 @@ async function getMoviesByGenre(id){
         })
     const pelisbyGenre = data.results;
     genericSection.innerHTML = '';
+    headerSection.style.background = ''
    
    createMovies(pelisbyGenre, genericSection)
     
@@ -53,6 +54,7 @@ async function getMoviesBySearch(query){
 
     const pelisbySearch = data.results;
     genericSection.innerHTML = '';
+    headerSection.style.background = ''
    
    createMovies(pelisbySearch, genericSection)
     
@@ -60,7 +62,7 @@ async function getMoviesBySearch(query){
 async function getTrendingSeriesPreview(){
     const {data} = await api('/trending/tv/day')
     seriesListContainer.innerHTML = ''
-
+    headerSection.style.background = ''
     const series = data.results;
 
     series.forEach(serie => {
@@ -87,7 +89,7 @@ async function getTrendingMovies(){
     headerSection.style.background = ''
     const pelis = data.results;
     genericSection.innerHTML = ''
-
+    headerSection.style.background = ''
     createMovies(pelis, genericSection)
     
 }
@@ -97,7 +99,7 @@ async function getTrendingSeries(){
     headerSection.style.background = ''
     const series = data.results;
     genericSection.innerHTML = ''
-
+    
     series.forEach(serie => {
         
         const movieContainer = document.createElement('div')
@@ -117,11 +119,12 @@ async function getTrendingSeries(){
 async function getMovieDetails(id){
     const { data: movie} = await api(`/movie/${id}`)     //aqui renombramos la variable data por movie
     headerSection.style.background = ''
-    relatedMoviesContainer.innerHTML = ''
+    relatedMoviesScroll.innerHTML = ''
     const movieImgUrl = IMG_BASE + movie.poster_path;
     
     headerSection.style.background = `url(${movieImgUrl})` //aqui colocamos la url del poster dentro del css ya que el profe puso la imagen en el html a traves de css
-
+    
+    headerImg.setAttribute('src', movieImgUrl)
     movieDetailTitle.textContent = movie.title
     movieDetailDescription.textContent = movie.overview
     movieDetailScore.textContent = movie.vote_average
@@ -134,7 +137,7 @@ async function getSerieDetails(id){
     const { data: serie} = await api(`/tv/${id}`)     //aqui renombramos la variable data por movie
     movieDetailCategoriesList.innerHTML = ''
     headerSection.style.background = ''
-    relatedMoviesContainer.innerHTML = ''
+    relatedMoviesScroll.innerHTML = ''
     
     const serieImgUrl = IMG_BASE + serie.poster_path;
     
@@ -152,13 +155,13 @@ async function getRelatedMovies(id){
     const { data} = await api(`/movie/${id}/recommendations`) 
     const related = data.results
 
-    createMovies(related, relatedMoviesContainer)
+    createMovies(related, relatedMoviesScroll)
 }
 async function getRelatedSeries(id){
     const { data} = await api(`/tv/${id}/recommendations`) 
     const related = data.results
 
-    createMovies(related, relatedMoviesContainer)
+    createMovies(related, relatedMoviesScroll)
 }
 function createMovies(movies, container){
 

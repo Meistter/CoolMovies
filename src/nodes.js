@@ -14,10 +14,12 @@ const trendinMoviesListContainer = document.querySelector('.trending-movieList')
 const seriesListContainer = document.querySelector('.trendingSeries-movieList')
 const categoriesListContainer = document.querySelector('.genre-list')
 const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
-const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
+const relatedMoviesScroll = document.querySelector('.relatedMovies-scrollContainer');
+const relatedMoviesContainer = document.querySelector('.relatedMovies-container')
+const headerImgCont = document.querySelector('.headerimg-cont')
 
 // Elementos
-
+const headerImg = document.querySelector('.headerimg')
 const boton = document.querySelector('#searchbtn');
 const headerTitle = document.querySelector('.header-title');
 const headerCategoryTitle = document.querySelector('.header-title--categoryView');

@@ -44,6 +44,8 @@ function home(){
     headerCategoryTitle.classList.add('inactive')
     genericSection.classList.add('inactive')
     headerSection.classList.remove('header-container--long')
+    headerImgCont.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')
     getTrendingPreview()
     getGenrePreview()    
     getTrendingSeriesPreview()
@@ -61,6 +63,8 @@ function trendsPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
+    headerImgCont.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')
     getTrendingMovies()
     init()
 }
@@ -75,6 +79,8 @@ function searchPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
+    headerImgCont.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')
     init()
     const [x, query] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
     getMoviesBySearch(query)
@@ -90,6 +96,8 @@ function movieDetailsPage(){
      genericSection.classList.add('inactive')
      headerSection.classList.add('header-container--long')
      searchForm.classList.remove('inactive')
+     headerImgCont.classList.remove('inactive')
+     relatedMoviesContainer.classList.remove('inactive')
      init()
      const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
      getMovieDetails(id)
@@ -106,6 +114,8 @@ function serieDetailsPage(){
      genericSection.classList.add('inactive')
      headerSection.classList.add('header-container--long')
      searchForm.classList.remove('inactive')
+     headerImgCont.classList.add('inactive')
+     relatedMoviesContainer.classList.add('inactive')
      init()
      const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
      console.log(location.hash);
@@ -123,6 +133,8 @@ function categoriesPage(){
     headerCategoryTitle.classList.remove('inactive')
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
+    headerImgCont.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')
     // window.scroll(0,0);
     init()
     // const id = 
@@ -145,6 +157,8 @@ function trendSeriesPage(){
     genericSection.classList.remove('inactive')
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
+    headerImgCont.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')
     getTrendingSeries()
     init()
 }
