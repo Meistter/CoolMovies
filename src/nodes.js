@@ -30,4 +30,5 @@ const btnSeriesTrend = document.querySelector('.trendingSeries-btn')
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');
 const movieDetailScore = document.querySelector('.movieDetail-score');
+const relatedMoviesTitle = document.querySelector('.relatedMovies-title')
 const headerContainerImg = document.querySelector('.header-container--long')

@@ -114,8 +114,8 @@ function serieDetailsPage(){
      genericSection.classList.add('inactive')
      headerSection.classList.add('header-container--long')
      searchForm.classList.remove('inactive')
-     headerImgCont.classList.add('inactive')
-     relatedMoviesContainer.classList.add('inactive')
+     headerImgCont.classList.remove('inactive')
+     relatedMoviesContainer.classList.remove('inactive')
      init()
      const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
      console.log(location.hash);

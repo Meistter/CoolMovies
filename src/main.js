@@ -123,7 +123,7 @@ async function getMovieDetails(id){
     const movieImgUrl = IMG_BASE + movie.poster_path;
     
     headerSection.style.background = `url(${movieImgUrl})` //aqui colocamos la url del poster dentro del css ya que el profe puso la imagen en el html a traves de css
-    
+    relatedMoviesTitle.innerHTML = 'Peliculas similares'
     headerImg.setAttribute('src', movieImgUrl)
     movieDetailTitle.textContent = movie.title
     movieDetailDescription.textContent = movie.overview
@@ -138,12 +138,13 @@ async function getSerieDetails(id){
     movieDetailCategoriesList.innerHTML = ''
     headerSection.style.background = ''
     relatedMoviesScroll.innerHTML = ''
-    
+    relatedMoviesTitle.innerHTML = 'Series similares'
     const serieImgUrl = IMG_BASE + serie.poster_path;
     
     headerSection.style.background = `url(${serieImgUrl})` //aqui colocamos la url del poster dentro del css ya que el profe puso la imagen en el html a traves de css
-    
-    movieDetailTitle.textContent = serie.title
+    headerImg.setAttribute('src', serieImgUrl)
+    movieDetailTitle.textContent = serie.name
+    console.log(serie);
     movieDetailDescription.textContent = serie.overview
     movieDetailScore.textContent = serie.vote_average
     
@@ -161,7 +162,7 @@ async function getRelatedSeries(id){
     const { data} = await api(`/tv/${id}/recommendations`) 
     const related = data.results
 
-    createMovies(related, relatedMoviesScroll)
+    creteSeries(related, relatedMoviesScroll)
 }
 function createMovies(movies, container){
 
@@ -176,6 +177,24 @@ function createMovies(movies, container){
         img.classList.add('movie-img')
         img.setAttribute('src', IMG_BASE + movie.poster_path)
         img.setAttribute('alt', movie.title)
+        movieContainer.appendChild(img)
+        container.appendChild(movieContainer)
+    })
+       
+}
+function creteSeries(series, container){
+
+    series.forEach(serie => {
+        
+        const movieContainer = document.createElement('div')
+        movieContainer.addEventListener('click', ()=>{
+            location.hash = `#serie=${serie.id}`
+        })
+        movieContainer.classList.add('movie-container')
+        const img = document.createElement('img')
+        img.classList.add('movie-img')
+        img.setAttribute('src', IMG_BASE + serie.poster_path)
+        img.setAttribute('alt', serie.title)
         movieContainer.appendChild(img)
         container.appendChild(movieContainer)
     })
