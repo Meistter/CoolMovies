@@ -306,15 +306,17 @@ footer p a{
 }
 .movieDetail-title {
   display: inline-block;
-  width: 40%;
+  width: 80%;
   margin: 0 0 16px 0;
   padding: 0;
+  font-size: 42px;
 }
 
 .movieDetail-score {
   display: inline-block;
-  text-align: left;
-  width: 18%;
+  text-align: right;
+  width: 19%;
+  font-size: 24px;
   font-weight: var(--font-weight-title2);
 }
 .movieDetail-score::before {
@@ -325,6 +327,7 @@ footer p a{
 
 .movieDetail-description {
   margin: 0 0 24px 0;
+  font-size: 20px;
 }
 
 .relatedMovies-container {
