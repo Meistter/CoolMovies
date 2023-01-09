@@ -8,7 +8,6 @@ const headerSection = document.querySelector('#header');
 const genericSection = document.querySelector('#genericList');
 
 // Listas y contenedores
-
 const searchForm = document.querySelector('#searchForm');
 const trendinMoviesListContainer = document.querySelector('.trending-movieList')
 const seriesListContainer = document.querySelector('.trendingSeries-movieList')

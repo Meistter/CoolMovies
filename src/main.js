@@ -32,7 +32,6 @@ async function getGenrePreview(){
     createCategories(genres, mainContainer)
     
 }
-
 async function getMoviesByGenre(id){
     const {data} = await api('/discover/movie', {
         params: {
@@ -45,7 +44,6 @@ async function getMoviesByGenre(id){
    createMovies(pelisbyGenre, genericSection)
     
 }
-
 async function getMoviesBySearch(query){
     const {data} = await api('/search/movie', {
         params: {

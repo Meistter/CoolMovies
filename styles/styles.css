@@ -43,7 +43,7 @@ html, body, nav{
     font-family: Inter;
     color: var(--white);
     background-color: var(--navBlue);
-    border-radius: 15px;
+    border-radius: 8px;
     border-width: 1px;
     border-color: var(--border);
     width: 150px;
@@ -327,7 +327,7 @@ footer p a{
 
 .movieDetail-description {
   margin: 0 0 24px 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .relatedMovies-container {
