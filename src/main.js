@@ -8,7 +8,7 @@ const api = axios.create({
     },
     params:{
         'api_key': API_KEY,
-        'language': 'es'  //para que las categorias lleguen en español
+        'language': 'es'  //para que la informacion de la api llegue en español
     }
 })
 
@@ -162,6 +162,19 @@ async function getRelatedSeries(id){
 
     creteSeries(related, relatedMoviesScroll)
 }
+//empezamos a optimizar codigo, el lazyloader lo usaremos para cargar solo los elementos que el usuario ve en pantalla en el momento
+const lazyLoader = new IntersectionObserver((entries, observer)=>{
+    entries.forEach((entry)=>{
+        console.log(entry);
+        if(entry.isIntersecting){
+            const url = entry.target.getAttribute('data-img') //el data-img viene dentro de entry.target
+            entry.target.setAttribute('src', url )
+        }
+        
+    })
+})
+// por hacer: agregar lazy loading a series
+
 function createMovies(movies, container){
 
     movies.forEach(movie => {
@@ -173,10 +186,12 @@ function createMovies(movies, container){
         movieContainer.classList.add('movie-container')
         const img = document.createElement('img')
         img.classList.add('movie-img')
-        img.setAttribute('src', IMG_BASE + movie.poster_path)
+        img.setAttribute('data-img', IMG_BASE + movie.poster_path)
         img.setAttribute('alt', movie.title)
         movieContainer.appendChild(img)
         container.appendChild(movieContainer)
+        //en cada iteracion a cada imagen le estamos llamando y asignando el lazyloader para ser observado
+        lazyLoader.observe(img) //le enviamos como parametro img a la function lazyloader
     })
        
 }
