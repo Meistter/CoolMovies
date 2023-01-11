@@ -82,6 +82,9 @@ async function getTrendingSeriesPreview(){
         lazyLoader.observe(img)
     });
 }
+
+//minuto 11:28
+
 window.addEventListener('scroll', getPaginatedTrendingMovies) //aqui escuchamos cualquier scroll en la aplicacion y llamamos a la funcion paginated, la funcion internamente compara el scroll y si se cumple pagina, si no, no hace nada
 var page = 1;
 async function getPaginatedTrendingMovies(){
