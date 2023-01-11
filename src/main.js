@@ -8,7 +8,8 @@ const api = axios.create({
     },
     params:{
         'api_key': API_KEY,
-        'language': 'es'  //para que la informacion de la api llegue en español
+        'language': 'es' //para que la informacion de la api llegue en español
+       
     }
 })
 
@@ -81,14 +82,39 @@ async function getTrendingSeriesPreview(){
         lazyLoader.observe(img)
     });
 }
+window.addEventListener('scroll', getPaginatedTrendingMovies) //aqui escuchamos cualquier scroll en la aplicacion y llamamos a la funcion paginated, la funcion internamente compara el scroll y si se cumple pagina, si no, no hace nada
+var page = 1;
+async function getPaginatedTrendingMovies(){
+     //logica para scroll infinito, aqui compararemos si esta al final del scroll y en caso de estarlo ejecuta el llamado a la pagina dos
+    const { scrollTop, scrollHeight, clientHeight} = document.documentElement
+    if (( scrollTop + clientHeight) >= (scrollHeight - 15)){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
+    
+        page++;
+    const {data} = await api('/trending/movie/day',{
+        params: {
+            page
+        }
+    })    
+    const pelis = data.results;
+    createMovies(pelis, genericSection)
+    }
+
+}
+
+
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
+    const pelis = data.results;
+
     headerTitle.innerHTML = 'Top 20 mejores peliculas de la Semana'
     headerSection.style.background = ''
-    const pelis = data.results;
     genericSection.innerHTML = ''
     headerSection.style.background = ''
+        
     createMovies(pelis, genericSection)
+
+   
+  
     
 }
 async function getTrendingSeries(){
