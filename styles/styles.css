@@ -129,6 +129,7 @@ html, body, nav{
   }
   .movie-container, .serie-container {
     cursor: pointer;
+    min-height: 200px;
 }
   .genericList-container .movie-container {
     display: inline-block;

@@ -74,11 +74,11 @@ async function getTrendingSeriesPreview(){
         serieContainer.classList.add('serie-container')
         const img = document.createElement('img')
         img.classList.add('serie-img')
-        img.setAttribute('src', IMG_BASE + serie.poster_path)
+        img.setAttribute('data-img', IMG_BASE + serie.poster_path)
         img.setAttribute('alt', serie.title)
         serieContainer.appendChild(img)
         mainArticle.appendChild(serieContainer)
-
+        lazyLoader.observe(img)
     });
 }
 async function getTrendingMovies(){
@@ -165,7 +165,7 @@ async function getRelatedSeries(id){
 //empezamos a optimizar codigo, el lazyloader lo usaremos para cargar solo los elementos que el usuario ve en pantalla en el momento
 const lazyLoader = new IntersectionObserver((entries, observer)=>{
     entries.forEach((entry)=>{
-        console.log(entry);
+       
         if(entry.isIntersecting){
             const url = entry.target.getAttribute('data-img') //el data-img viene dentro de entry.target
             entry.target.setAttribute('src', url )
@@ -173,7 +173,6 @@ const lazyLoader = new IntersectionObserver((entries, observer)=>{
         
     })
 })
-// por hacer: agregar lazy loading a series
 
 function createMovies(movies, container){
 
@@ -185,11 +184,18 @@ function createMovies(movies, container){
         })
         movieContainer.classList.add('movie-container')
         const img = document.createElement('img')
-        img.classList.add('movie-img')
+        img.classList.add('movie-img')        
         img.setAttribute('data-img', IMG_BASE + movie.poster_path)
         img.setAttribute('alt', movie.title)
         movieContainer.appendChild(img)
         container.appendChild(movieContainer)
+
+        //En este paso lo que haremos es definir una imagen por defecto cuando alguna imagen no cargue desde la api
+        img.addEventListener('error',()=>{
+            //aqui definimos la logica en caso de error
+            img.setAttribute('src','./img/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.webp')
+        })
+
         //en cada iteracion a cada imagen le estamos llamando y asignando el lazyloader para ser observado
         lazyLoader.observe(img) //le enviamos como parametro img a la function lazyloader
     })
@@ -206,10 +212,11 @@ function creteSeries(series, container){
         movieContainer.classList.add('movie-container')
         const img = document.createElement('img')
         img.classList.add('movie-img')
-        img.setAttribute('src', IMG_BASE + serie.poster_path)
+        img.setAttribute('data-img', IMG_BASE + serie.poster_path)
         img.setAttribute('alt', serie.title)
         movieContainer.appendChild(img)
         container.appendChild(movieContainer)
+        lazyLoader.observe(img)
     })
        
 }
