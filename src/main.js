@@ -82,11 +82,9 @@ async function getTrendingSeriesPreview(){
         lazyLoader.observe(img)
     });
 }
-
-//minuto 11:28
-
-window.addEventListener('scroll', getPaginatedTrendingMovies) //aqui escuchamos cualquier scroll en la aplicacion y llamamos a la funcion paginated, la funcion internamente compara el scroll y si se cumple pagina, si no, no hace nada
-var page = 1;
+let page = 1;
+let infiniteScroll //esta variable nos permitira diferenciar a que pagina hacer scroll infinito
+// window.addEventListener('scroll', infiniteScroll) //aqui escuchamos cualquier scroll en la aplicacion y llamamos a la funcion paginated, la funcion internamente compara el scroll y si se cumple pagina, si no, no hace nada. Este llamado lo movimos a navigation.js
 async function getPaginatedTrendingMovies(){
      //logica para scroll infinito, aqui compararemos si esta al final del scroll y en caso de estarlo ejecuta el llamado a la pagina dos
     const { scrollTop, scrollHeight, clientHeight} = document.documentElement
@@ -103,8 +101,22 @@ async function getPaginatedTrendingMovies(){
     }
 
 }
+async function getPaginatedTrendingSeries(){
+    //logica para scroll infinito, aqui compararemos si esta al final del scroll y en caso de estarlo ejecuta el llamado a la pagina dos
+   const { scrollTop, scrollHeight, clientHeight} = document.documentElement
+   if (( scrollTop + clientHeight) >= (scrollHeight - 15)){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
+   
+       page++;
+   const {data} = await api('/trending/tv/day',{
+       params: {
+           page
+       }
+   })    
+   const series = data.results;
+   createMovies(series, genericSection)
+   }
 
-
+}
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
     const pelis = data.results;
