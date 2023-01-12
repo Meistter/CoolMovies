@@ -72,6 +72,7 @@ function trendsPage(){
     relatedMoviesContainer.classList.add('inactive')    
     getTrendingMovies()
     init()
+    page = 1;
     infiniteScroll = getPaginatedTrendingMovies
 }
 function searchPage(){
@@ -86,10 +87,11 @@ function searchPage(){
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
-    relatedMoviesContainer.classList.add('inactive')
-    infiniteScroll = getPaginatedMoviesBySearch
+    relatedMoviesContainer.classList.add('inactive')    
     init()
+    page = 1;
     const [x, query] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
+    infiniteScroll = getPaginatedMoviesBySearch(query) //aqui a diferencia que en caterogias, usamos closure
     getMoviesBySearch(query)
 }
 function movieDetailsPage(){
@@ -142,6 +144,7 @@ function categoriesPage(){
     headerSection.classList.remove('header-container--long')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    page = 1;
     infiniteScroll = getPaginatedGenregMovies
     // window.scroll(0,0);
     init()
@@ -167,6 +170,7 @@ function trendSeriesPage(){
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    page = 1;
     infiniteScroll = getPaginatedTrendingSeries
     getTrendingSeries()
     init()

@@ -126,26 +126,28 @@ async function getPaginatedTrendingSeries(){
    }
 
 }
-async function getPaginatedMoviesBySearch(query){    
-   const { scrollTop, scrollHeight, clientHeight} = document.documentElement
+ function getPaginatedMoviesBySearch(query){   
+  return async function(){
+            const { scrollTop, scrollHeight, clientHeight} = document.documentElement
 
-   const pageIsNotMax = page < maxPage;
-
-   if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ 
-    const [_, query] = location.hash.split("=");
-    console.log(query);
-       page++;
-       const {data} = await api('/search/movie', {
-        params: {
-            page,
-            query : query} 
-        })
-
-    const pelisbySearch = data.results;
+            const pageIsNotMax = page < maxPage;
     
-   
-   createMovies(pelisbySearch, genericSection)
-    }
+            if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ 
+                // const [_, query] = location.hash.split("="); aqui en lugar de sacar el id vamos a hacerlo con closures
+                console.log(query);
+                page++;
+                const {data} = await api('/search/movie', {
+                    params: {
+                        page,
+                        query : query} 
+                    })
+
+                const pelisbySearch = data.results;
+                
+            
+            createMovies(pelisbySearch, genericSection)
+                }
+            }
 }
 async function getPaginatedGenregMovies(){
    
