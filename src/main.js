@@ -37,7 +37,11 @@ async function getMoviesByGenre(id){
     const {data} = await api('/discover/movie', {
         params: {
             with_genres : id}
+            
         })
+    console.log(data.total_pages);
+
+    maxPage = data.total_pages;
     const pelisbyGenre = data.results;
     genericSection.innerHTML = '';
     headerSection.style.background = ''
@@ -50,7 +54,7 @@ async function getMoviesBySearch(query){
         params: {
             query : query} //la api requiere enviarle un parametro llamado query con lo q el usuario desea buscar
         })
-
+    maxPage = data.total_pages;
     const pelisbySearch = data.results;
     genericSection.innerHTML = '';
     headerSection.style.background = ''
@@ -82,13 +86,17 @@ async function getTrendingSeriesPreview(){
         lazyLoader.observe(img)
     });
 }
+let maxPage;
 let page = 1;
 let infiniteScroll //esta variable nos permitira diferenciar a que pagina hacer scroll infinito
 // window.addEventListener('scroll', infiniteScroll) //aqui escuchamos cualquier scroll en la aplicacion y llamamos a la funcion paginated, la funcion internamente compara el scroll y si se cumple pagina, si no, no hace nada. Este llamado lo movimos a navigation.js
+
 async function getPaginatedTrendingMovies(){
      //logica para scroll infinito, aqui compararemos si esta al final del scroll y en caso de estarlo ejecuta el llamado a la pagina dos
     const { scrollTop, scrollHeight, clientHeight} = document.documentElement
-    if (( scrollTop + clientHeight) >= (scrollHeight - 15)){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
+    const pageIsNotMax = page < maxPage; //esta variable la usamos para verificar que no lleguemos a la ultima pagina existente en la api, para no cargar mas de las paginas existentes en la api lo cual daria error
+
+    if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
     
         page++;
     const {data} = await api('/trending/movie/day',{
@@ -104,7 +112,8 @@ async function getPaginatedTrendingMovies(){
 async function getPaginatedTrendingSeries(){
     //logica para scroll infinito, aqui compararemos si esta al final del scroll y en caso de estarlo ejecuta el llamado a la pagina dos
    const { scrollTop, scrollHeight, clientHeight} = document.documentElement
-   if (( scrollTop + clientHeight) >= (scrollHeight - 15)){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
+   const pageIsNotMax = page < maxPage;
+   if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ //esta es la validacion para saber si la persona llego al final del scroll de la pagina, la comparacion de estos valores nos da como resultado si esta o no al final, cada dato representa un numero
    
        page++;
    const {data} = await api('/trending/tv/day',{
@@ -113,13 +122,56 @@ async function getPaginatedTrendingSeries(){
        }
    })    
    const series = data.results;
-   createMovies(series, genericSection)
+   createSeries(series, genericSection)
    }
 
 }
+async function getPaginatedMoviesBySearch(query){    
+   const { scrollTop, scrollHeight, clientHeight} = document.documentElement
+
+   const pageIsNotMax = page < maxPage;
+
+   if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ 
+    const [_, query] = location.hash.split("=");
+    console.log(query);
+       page++;
+       const {data} = await api('/search/movie', {
+        params: {
+            page,
+            query : query} 
+        })
+
+    const pelisbySearch = data.results;
+    
+   
+   createMovies(pelisbySearch, genericSection)
+    }
+}
+async function getPaginatedGenregMovies(){
+   
+   const { scrollTop, scrollHeight, clientHeight} = document.documentElement
+   const pageIsNotMax = page < maxPage; 
+
+   if ((( scrollTop + clientHeight) >= (scrollHeight - 15)) && pageIsNotMax){ 
+    const [_, id1, urlName] = location.hash.split("="); //aqui sacamos el id de la categoria directamente de la url ya que ya nos encontramos dentro de la categoria que queremos
+    const [id, x] = id1.split("-"); 
+   
+       page++;
+       const {data} = await api('/discover/movie', {
+        params: {
+            with_genres : id,
+            page}
+        })
+    const pelisbyGenre = data.results;
+    
+   
+    createMovies(pelisbyGenre, genericSection)
+    }
+}   
 async function getTrendingMovies(){
     const {data} = await api('/trending/movie/day')    
     const pelis = data.results;
+    maxPage = data.total_pages;
 
     headerTitle.innerHTML = 'Top 20 mejores peliculas de la Semana'
     headerSection.style.background = ''
@@ -133,12 +185,13 @@ async function getTrendingMovies(){
     
 }
 async function getTrendingSeries(){
+    console.log(infiniteScroll);
     const {data} = await api('/trending/tv/day')    
     headerTitle.innerHTML = 'Top 20 mejores series del Año'
     headerSection.style.background = ''
     const series = data.results;
     genericSection.innerHTML = ''
-    
+    maxPage = data.total_pages;    
     series.forEach(serie => {
         
         const movieContainer = document.createElement('div')
@@ -214,7 +267,6 @@ const lazyLoader = new IntersectionObserver((entries, observer)=>{
         
     })
 })
-
 function createMovies(movies, container){
 
     movies.forEach(movie => {
@@ -242,7 +294,7 @@ function createMovies(movies, container){
     })
        
 }
-function creteSeries(series, container){
+function createSeries(series, container){
 
     series.forEach(serie => {
         
