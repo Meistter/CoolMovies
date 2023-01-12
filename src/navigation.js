@@ -32,8 +32,13 @@ function navigator(){
     
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+
+    if (infiniteScroll){
+        window.addEventListener('scroll', infiniteScroll)
+    }
 }
 function home(){
+    
     location.hash = '#home'
     navSection.classList.remove('inactive')
     trendingSection.classList.remove('inactive')
@@ -50,7 +55,7 @@ function home(){
     getGenrePreview()    
     getTrendingSeriesPreview()
     init()
-
+    
    }
 function trendsPage(){
     navSection.classList.remove('inactive')
@@ -64,9 +69,10 @@ function trendsPage(){
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
-    relatedMoviesContainer.classList.add('inactive')
+    relatedMoviesContainer.classList.add('inactive')    
     getTrendingMovies()
     init()
+    infiniteScroll = getPaginatedTrendingMovies
 }
 function searchPage(){
     navSection.classList.remove('inactive')
@@ -81,6 +87,7 @@ function searchPage(){
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    infiniteScroll = getPaginatedMoviesBySearch
     init()
     const [x, query] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
     getMoviesBySearch(query)
@@ -135,6 +142,7 @@ function categoriesPage(){
     headerSection.classList.remove('header-container--long')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    infiniteScroll = getPaginatedGenregMovies
     // window.scroll(0,0);
     init()
     // const id = 
@@ -159,6 +167,7 @@ function trendSeriesPage(){
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    infiniteScroll = getPaginatedTrendingSeries
     getTrendingSeries()
     init()
 }
