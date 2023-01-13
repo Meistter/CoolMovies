@@ -12,8 +12,6 @@ window.addEventListener('hashchange', navigator, false)
 
 function navigator(){
     
-
-
     if (location.hash.startsWith('#trends')){
         trendsPage();
     }else if (location.hash.startsWith('#search=')){
@@ -51,12 +49,15 @@ function home(){
     headerSection.classList.remove('header-container--long')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    likedMovieListNode.classList.remove('inactive')
+    
     getTrendingPreview()
     getGenrePreview()    
     getTrendingSeriesPreview()
     init()
+    getLikedMovies()
     
-   }
+}
 function trendsPage(){
     navSection.classList.remove('inactive')
     trendingSection.classList.add('inactive')
@@ -70,6 +71,7 @@ function trendsPage(){
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')    
+    likedMovieListNode.classList.add('inactive')
     getTrendingMovies()
     init()
     page = 1;
@@ -87,7 +89,8 @@ function searchPage(){
     headerSection.classList.remove('header-container--long')
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
-    relatedMoviesContainer.classList.add('inactive')    
+    relatedMoviesContainer.classList.add('inactive')  
+    likedMovieListNode.classList.add('inactive')  
     init()
     page = 1;
     const [x, query] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
@@ -107,6 +110,7 @@ function movieDetailsPage(){
      searchForm.classList.remove('inactive')
      headerImgCont.classList.remove('inactive')
      relatedMoviesContainer.classList.remove('inactive')
+     likedMovieListNode.classList.add('inactive')
      init()
      const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
      getMovieDetails(id)
@@ -125,6 +129,7 @@ function serieDetailsPage(){
      searchForm.classList.remove('inactive')
      headerImgCont.classList.remove('inactive')
      relatedMoviesContainer.classList.remove('inactive')
+     likedMovieListNode.classList.add('inactive')
      init()
      const [x, id] = location.hash.split('=') //query representa el valor a buscar escrito por el usuario
      console.log(location.hash);
@@ -144,6 +149,7 @@ function categoriesPage(){
     headerSection.classList.remove('header-container--long')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    likedMovieListNode.classList.add('inactive')
     page = 1;
     infiniteScroll = getPaginatedGenregMovies
     // window.scroll(0,0);
@@ -170,9 +176,9 @@ function trendSeriesPage(){
     searchForm.classList.remove('inactive')
     headerImgCont.classList.add('inactive')
     relatedMoviesContainer.classList.add('inactive')
+    likedMovieListNode.classList.add('inactive')
     page = 1;
     infiniteScroll = getPaginatedTrendingSeries
     getTrendingSeries()
     init()
 }
-

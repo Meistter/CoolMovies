@@ -13,6 +13,32 @@ const api = axios.create({
     }
 })
 
+function likedMovieList(){
+    //Esta funcion retorna el string almacenado en el local storage definido entre parentesis
+    const item = JSON.parse(localStorage.getItem('liked_movies'))
+    let movies;
+    if (item){
+        movies = item
+    }else{
+        movies = {}
+    }
+    console.log(movies);
+    return movies
+}
+function likedMovie(movie) {
+    const likedMovies = likedMovieList()
+
+    if (likedMovies[movie.id]){
+       //si esto se cumple entonces la pelicula ya esta en local storage
+    likedMovies[movie.id] = undefined
+
+    } else{
+        likedMovies[movie.id] = movie
+    }
+
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies))
+}
 // En esta funcion NO usaremos Axios para guardarlo como ejemplo usando solo FETCH
 async function getTrendingPreview(){
     const res = await fetch(API_URL + '/trending/movie/day'  +'?api_key=' + API_KEY + '&language=es')
@@ -255,7 +281,7 @@ const lazyLoader = new IntersectionObserver((entries, observer)=>{
     })
 })
 function createMovies(movies, container){
-
+    likedMovieListNode.innerHTML = ''
     movies.forEach(movie => {
         
         const movieContainer = document.createElement('div')
@@ -278,12 +304,18 @@ function createMovies(movies, container){
         })
 
         const movieBtn = document.createElement('button')
-        movieBtn.classList.add('movie-like-btn')
-        
-        
+        movieBtn.classList.add('movie-like-btn')   
         movieContainer.append(movieBtn)
+        
+        // Aqui lo que hacemos es validar si el movie que estamos iterando en el momento, se encuentra dentro del local store, si lo esta entonces le agregamos la clase
+        likedMovieList()[movie.id] && movieBtn.classList.add('movie-like-btn--liked')
+        //recordar que likedMovieList retorna el objeto del localstore
+
         movieBtn.addEventListener('click', ()=>{
             movieBtn.classList.toggle('movie-like-btn--liked')
+            //aqui agregaremos/quitaremos la pelicula al local storage
+            likedMovie(movie)
+            getLikedMovies()
         })
 
         //en cada iteracion a cada imagen le estamos llamando y asignando el lazyloader para ser observado
@@ -345,4 +377,11 @@ function createCategories(gen, container){
         container.appendChild(genreContainer)
 
     });
+}
+
+function getLikedMovies(){
+    const likedMovies = likedMovieList() //con esto obtenemos el objeto de peliculas guardadas en el local storage
+    const moviesArray = Object.values(likedMovies)//con esta funcion convertimos los valores del objeto en un array
+
+    createMovies(moviesArray, likedMovieListNode)
 }

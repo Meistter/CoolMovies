@@ -16,6 +16,7 @@ const movieDetailCategoriesList = document.querySelector('#movieDetail .categori
 const relatedMoviesScroll = document.querySelector('.relatedMovies-scrollContainer');
 const relatedMoviesContainer = document.querySelector('.relatedMovies-container')
 const headerImgCont = document.querySelector('.headerimg-cont')
+const likedMovieListNode = document.querySelector('.liked-movieList')
 
 // Elementos
 const headerImg = document.querySelector('.headerimg')
