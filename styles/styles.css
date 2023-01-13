@@ -130,6 +130,9 @@ html, body, nav{
   .movie-container, .serie-container {
     cursor: pointer;
     min-height: 200px;
+    margin: 10px;
+    position: relative;
+    
 }
   .genericList-container .movie-container {
     display: inline-block;
@@ -331,7 +334,7 @@ footer p a{
   font-size: 18px;
 }
 
-.relatedMovies-container {
+.relatedMovies-container, .liked-header {
   /* margin-top: 24px; */
   /* width: 50%; */
   color: var(--white);
@@ -385,3 +388,33 @@ footer p a{
   position: relative;
   flex-wrap: wrap;
 } */
+
+.liked-movieList, .liked-serieList{
+   display: flex;
+   align-items: center;
+}
+.movie-like-btn, .serie-like-btn{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: var(--navBlue);
+  cursor: pointer;
+}
+.movie-like-btn::before{
+  content: '🤍';
+}
+.movie-like-btn--liked::before{
+  content: '💖';
+}
+.serie-like-btn::before{
+  content: '🤍';
+}
+.serie-like-btn--liked::before{
+  content: '💖';
+}

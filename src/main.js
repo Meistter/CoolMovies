@@ -67,24 +67,9 @@ async function getTrendingSeriesPreview(){
     seriesListContainer.innerHTML = ''
     headerSection.style.background = ''
     const series = data.results;
-
-    series.forEach(serie => {
-
-        const mainArticle = document.querySelector('#trendingSeries .trendingSeries-movieList')
-        
-        const serieContainer = document.createElement('div')
-        serieContainer.addEventListener('click', ()=>{
-            location.hash = '#serie=' + serie.id
-        })
-        serieContainer.classList.add('serie-container')
-        const img = document.createElement('img')
-        img.classList.add('serie-img')
-        img.setAttribute('data-img', IMG_BASE + serie.poster_path)
-        img.setAttribute('alt', serie.title)
-        serieContainer.appendChild(img)
-        mainArticle.appendChild(serieContainer)
-        lazyLoader.observe(img)
-    });
+    const mainArticle = document.querySelector('#trendingSeries .trendingSeries-movieList')
+    createSeries(series, mainArticle)
+    
 }
 let maxPage;
 let page = 1;
@@ -274,11 +259,12 @@ function createMovies(movies, container){
     movies.forEach(movie => {
         
         const movieContainer = document.createElement('div')
-        movieContainer.addEventListener('click', ()=>{
-            location.hash = `#movie=${movie.id}`
-        })
+        
         movieContainer.classList.add('movie-container')
         const img = document.createElement('img')
+        img.addEventListener('click', ()=>{
+            location.hash = `#movie=${movie.id}`
+        })
         img.classList.add('movie-img')        
         img.setAttribute('data-img', IMG_BASE + movie.poster_path)
         img.setAttribute('alt', movie.title)
@@ -291,6 +277,15 @@ function createMovies(movies, container){
             img.setAttribute('src','./img/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.webp')
         })
 
+        const movieBtn = document.createElement('button')
+        movieBtn.classList.add('movie-like-btn')
+        
+        
+        movieContainer.append(movieBtn)
+        movieBtn.addEventListener('click', ()=>{
+            movieBtn.classList.toggle('movie-like-btn--liked')
+        })
+
         //en cada iteracion a cada imagen le estamos llamando y asignando el lazyloader para ser observado
         lazyLoader.observe(img) //le enviamos como parametro img a la function lazyloader
     })
@@ -299,21 +294,39 @@ function createMovies(movies, container){
 function createSeries(series, container){
 
     series.forEach(serie => {
+
+       
+        const serieContainer = document.createElement('div')
         
-        const movieContainer = document.createElement('div')
-        movieContainer.addEventListener('click', ()=>{
-            location.hash = `#serie=${serie.id}`
-        })
-        movieContainer.classList.add('movie-container')
+        serieContainer.classList.add('serie-container')
         const img = document.createElement('img')
-        img.classList.add('movie-img')
+        img.addEventListener('click', ()=>{
+            location.hash = '#serie=' + serie.id
+        })
+        img.classList.add('serie-img')
         img.setAttribute('data-img', IMG_BASE + serie.poster_path)
         img.setAttribute('alt', serie.title)
-        movieContainer.appendChild(img)
-        container.appendChild(movieContainer)
+        serieContainer.appendChild(img)
+        container.appendChild(serieContainer)
+        img.addEventListener('error',()=>{
+            //aqui definimos la logica en caso de error
+            img.setAttribute('src','./img/ups-error-404-ilustracion-concepto-robot-roto_114360-5529.webp')
+        })
+        
         lazyLoader.observe(img)
-    })
-       
+
+        const serieBtn = document.createElement('button')
+        serieBtn.classList.add('serie-like-btn')
+        
+        
+        serieContainer.append(serieBtn)
+        serieBtn.addEventListener('click', ()=>{
+            serieBtn.classList.toggle('serie-like-btn--liked')
+        })
+
+
+    });
+    
 }
 function createCategories(gen, container){
     gen.forEach(genre => {
