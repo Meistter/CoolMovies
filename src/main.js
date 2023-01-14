@@ -281,7 +281,7 @@ const lazyLoader = new IntersectionObserver((entries, observer)=>{
     })
 })
 function createMovies(movies, container){
-    likedMovieListNode.innerHTML = ''
+    
     movies.forEach(movie => {
         
         const movieContainer = document.createElement('div')
@@ -314,6 +314,7 @@ function createMovies(movies, container){
         movieBtn.addEventListener('click', ()=>{
             movieBtn.classList.toggle('movie-like-btn--liked')
             //aqui agregaremos/quitaremos la pelicula al local storage
+            likedMovieListNode.innerHTML = ''
             likedMovie(movie)
             getLikedMovies()
         })
