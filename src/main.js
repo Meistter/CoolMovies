@@ -8,7 +8,7 @@ const api = axios.create({
     },
     params:{
         'api_key': API_KEY,
-        'language': 'es' //para que la informacion de la api llegue en español
+        'language': navigator.language || 'es' //para que la informacion de la api llegue en español
        
     }
 })
