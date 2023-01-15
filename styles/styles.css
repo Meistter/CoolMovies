@@ -201,6 +201,8 @@ html, body, nav{
 body{
     margin: 0;
     background-color: var(--bodyBlue);
+    overflow-x: hidden;
+   
 }
 .navbar{
     display: flex;

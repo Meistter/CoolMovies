@@ -55,6 +55,7 @@ function home(){
     getGenrePreview()    
     getTrendingSeriesPreview()
     init()
+    likedMovieListNode.innerHTML = ''
     getLikedMovies()
     
 }

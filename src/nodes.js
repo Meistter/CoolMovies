@@ -17,7 +17,7 @@ const relatedMoviesScroll = document.querySelector('.relatedMovies-scrollContain
 const relatedMoviesContainer = document.querySelector('.relatedMovies-container')
 const headerImgCont = document.querySelector('.headerimg-cont')
 const likedMovieListNode = document.querySelector('.liked-movieList')
-
+const likedSection = document.querySelector('#liked')
 // Elementos
 const headerImg = document.querySelector('.headerimg')
 const boton = document.querySelector('#searchbtn');

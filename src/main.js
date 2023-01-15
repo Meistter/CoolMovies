@@ -16,13 +16,15 @@ const api = axios.create({
 function likedMovieList(){
     //Esta funcion retorna el string almacenado en el local storage definido entre parentesis
     const item = JSON.parse(localStorage.getItem('liked_movies'))
+    
     let movies;
     if (item){
+       
         movies = item
     }else{
         movies = {}
     }
-    console.log(movies);
+    
     return movies
 }
 function likedMovie(movie) {
@@ -38,6 +40,20 @@ function likedMovie(movie) {
 
 
     localStorage.setItem('liked_movies', JSON.stringify(likedMovies))
+}
+function likedSerie(serie) {
+    const likedSeries = likedMovieList()
+
+    if (likedSeries[serie.id]){
+       //si esto se cumple entonces la pelicula ya esta en local storage
+    likedSeries[serie.id] = undefined
+
+    } else{
+        likedSeries[serie.id] = serie
+    }
+
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedSeries))
 }
 // En esta funcion NO usaremos Axios para guardarlo como ejemplo usando solo FETCH
 async function getTrendingPreview(){
@@ -205,20 +221,8 @@ async function getTrendingSeries(){
     const series = data.results;
     genericSection.innerHTML = ''
     maxPage = data.total_pages;    
-    series.forEach(serie => {
-        
-        const movieContainer = document.createElement('div')
-        movieContainer.addEventListener('click', ()=>{
-            location.hash = `#serie=${serie.id}`
-        })
-        movieContainer.classList.add('movie-container')
-        const img = document.createElement('img')
-        img.classList.add('movie-img')
-        img.setAttribute('src', IMG_BASE + serie.poster_path)
-        img.setAttribute('alt', serie.title)
-        movieContainer.appendChild(img)
-        genericSection.appendChild(movieContainer)
-    })
+    
+    createSeries(series, genericSection)
    
 }
 async function getMovieDetails(id){
@@ -317,6 +321,7 @@ function createMovies(movies, container){
             likedMovieListNode.innerHTML = ''
             likedMovie(movie)
             getLikedMovies()
+           
         })
 
         //en cada iteracion a cada imagen le estamos llamando y asignando el lazyloader para ser observado
@@ -353,8 +358,16 @@ function createSeries(series, container){
         
         
         serieContainer.append(serieBtn)
+        // Aqui lo que hacemos es validar si el movie que estamos iterando en el momento, se encuentra dentro del local store, si lo esta entonces le agregamos la clase
+        likedMovieList()[serie.id] && serieBtn.classList.add('serie-like-btn--liked')
+
         serieBtn.addEventListener('click', ()=>{
-            serieBtn.classList.toggle('serie-like-btn--liked')
+            serieBtn.classList.toggle('serie-like-btn--liked')           
+            //aqui agregaremos/quitaremos la pelicula al local storage
+            likedMovieListNode.innerHTML = ''
+            likedSerie(serie)
+            getLikedMovies()
+            
         })
 
 
