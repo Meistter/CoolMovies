@@ -71,7 +71,7 @@ async function getGenrePreview(){
     const genres = data.genres;    
     const mainContainer = document.querySelector('#genre .genre-list')
     categoriesListContainer.innerHTML = ''    
-
+    console.log(data);
     createCategories(genres, mainContainer)
     
 }
