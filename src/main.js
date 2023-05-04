@@ -12,7 +12,7 @@ const api = axios.create({
        
     }
 })
-
+// a
 function likedMovieList(){
     //Esta funcion retorna el string almacenado en el local storage definido entre parentesis
     const item = JSON.parse(localStorage.getItem('liked_movies'))
